@@ -1,3 +1,2 @@
-# LibraryProject
-
-this is full Django project . its about creating a django app according to Alxinstructure and make sure its in the right folder 
+#libraryproject
+my alx project on django set up is in progress. i was given a task to create a django set up and a django app
