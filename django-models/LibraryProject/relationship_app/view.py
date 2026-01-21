@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import login, logout
-from django.contrib import messages
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 # Registration view
 def register_view(request):
@@ -9,36 +8,28 @@ def register_view(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # log in user immediately after registration
-            messages.success(request, "Registration successful!")
-            return redirect('home')  # Redirect to home page (we'll create this)
-        else:
-            messages.error(request, "Unsuccessful registration. Invalid information.")
+            login(request, user)
+            return redirect('login')
     else:
         form = UserCreationForm()
+
     return render(request, 'relationship_app/register.html', {'form': form})
+
 
 # Login view
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(data=request.POST)
         if form.is_valid():
-            user = form.get_user()
-            login(request, user)
-            messages.success(request, f"Welcome {user.username}!")
-            return redirect('home')
-        else:
-            messages.error(request, "Invalid username or password.")
+            login(request, form.get_user())
+            return redirect('login')
     else:
         form = AuthenticationForm()
+
     return render(request, 'relationship_app/login.html', {'form': form})
+
 
 # Logout view
 def logout_view(request):
     logout(request)
-    messages.info(request, "You have successfully logged out.")
     return render(request, 'relationship_app/logout.html')
-
-def home_view(request):
-    return render(request, 'relationship_app/home.html')
-
