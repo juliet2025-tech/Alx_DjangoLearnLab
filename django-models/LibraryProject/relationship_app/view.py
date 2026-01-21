@@ -38,3 +38,7 @@ def logout_view(request):
     logout(request)
     messages.info(request, "You have successfully logged out.")
     return render(request, 'relationship_app/logout.html')
+
+def home_view(request):
+    return render(request, 'relationship_app/home.html')
+
