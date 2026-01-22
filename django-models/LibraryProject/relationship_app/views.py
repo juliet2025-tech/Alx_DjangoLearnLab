@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+'relationship_app/librarian_view.html'
+'relationship_app/member_view.html'
 
 
 # Registration view
