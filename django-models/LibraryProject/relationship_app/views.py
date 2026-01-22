@@ -67,3 +67,6 @@ def add_book(request):
         )
         return redirect('list_books')
     return render(request, 'relationship_app/add_book.html')
+
+"relationship_app.can_change_book"
+"relationship_app.can_delete_book"
