@@ -67,3 +67,6 @@ urlpatterns = [
     path('book/edit/<int:pk>/', edit_book, name='edit_book'),
     path('book/delete/<int:pk>/', delete_book, name='delete_book'),
 ]
+
+"add_book/"
+"edit_book/"
