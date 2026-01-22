@@ -70,3 +70,6 @@ def add_book(request):
 
 "relationship_app.can_change_book"
 "relationship_app.can_delete_book"
+
+"relationship_app/list_books.html"
+"Book.objects.all()"
