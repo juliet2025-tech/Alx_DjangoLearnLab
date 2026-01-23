@@ -1,0 +1,8 @@
+<h1>Edit Book</h1>
+<form method="post">
+    {% csrf_token %}
+    <input name="title" value="{{ book.title }}">
+    <input name="author" value="{{ book.author }}">
+    <input name="published_date" value="{{ book.published_date }}">
+    <button type="submit">Save</button>
+</form>
