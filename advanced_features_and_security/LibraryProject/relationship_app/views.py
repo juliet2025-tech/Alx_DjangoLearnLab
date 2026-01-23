@@ -78,3 +78,30 @@ def add_book(request):
 "Book.objects.all()"
 
 "relationship_app/library_detail.html", "library", "from .models import Library"
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import render
+from .models import Relationship
+
+@permission_required('relationship_app.can_view', raise_exception=True)
+def relationship_list(request):
+    relationships = Relationship.objects.all()
+    return render(request, 'relationship_app/list.html', {'relationships': relationships})
+
+from django.contrib.auth.decorators import permission_required
+from django.shortcuts import render
+from .models import Relationship
+
+@permission_required('relationship_app.can_view', raise_exception=True)
+def relationship_list(request):
+    relationships = Relationship.objects.all()
+    return render(request, 'relationship_app/list.html', {'relationships': relationships})
+
+
+@permission_required('relationship_app.can_create', raise_exception=True)
+def create_relationship(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        Relationship.objects.create(title=title, description=description)
+        return redirect('relationship_list')
+    return render(request, 'relationship_app/create.html')

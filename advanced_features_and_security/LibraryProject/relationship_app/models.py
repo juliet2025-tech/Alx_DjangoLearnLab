@@ -74,3 +74,17 @@ class Book(models.Model):
     def __str__(self):
         return self.title
 
+class Relationship(models.Model):
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+    class Meta:
+        permissions = [
+            ('can_view', 'Can view relationship'),
+            ('can_create', 'Can create relationship'),
+            ('can_edit', 'Can edit relationship'),
+            ('can_delete', 'Can delete relationship'),
+        ]
+
+    def __str__(self):
+        return self.title
