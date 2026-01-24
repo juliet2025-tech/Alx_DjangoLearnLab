@@ -9,3 +9,16 @@ class BookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = ['title', 'author']
+
+        from django import forms
+from .models import Book
+
+class ExampleForm(forms.ModelForm):
+    """
+    ExampleForm demonstrates secure form handling using Django's ModelForm.
+    It validates and sanitizes user input to prevent XSS and SQL injection.
+    """
+    class Meta:
+        model = Book
+        fields = ['title', 'author']
+
