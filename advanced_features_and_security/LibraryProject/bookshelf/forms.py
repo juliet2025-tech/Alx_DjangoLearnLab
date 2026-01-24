@@ -1,0 +1,11 @@
+from django import forms
+from .models import Book
+
+class BookForm(forms.ModelForm):
+    """
+    BookForm uses Django's ModelForm to validate and sanitize user input,
+    helping to prevent XSS and SQL injection attacks.
+    """
+    class Meta:
+        model = Book
+        fields = ['title', 'author']
