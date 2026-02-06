@@ -8,19 +8,16 @@ from .views import (
 )
 
 urlpatterns = [
-    # Read operations
+    # Read
     path('books/', BookListView.as_view(), name='book-list'),
     path('books/<int:pk>/', BookDetailView.as_view(), name='book-detail'),
 
-    # Write operations
+    # Create
     path('books/create/', BookCreateView.as_view(), name='book-create'),
-    path('books/<int:pk>/update/', BookUpdateView.as_view(), name='book-update'),
-    path('books/<int:pk>/delete/', BookDeleteView.as_view(), name='book-delete'),
-]
-from django.contrib import admin
-from django.urls import path, include
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
+    # Update (ALX expects "books/update")
+    path('books/update/<int:pk>/', BookUpdateView.as_view(), name='book-update'),
+
+    # Delete (ALX expects "books/delete")
+    path('books/delete/<int:pk>/', BookDeleteView.as_view(), name='book-delete'),
 ]
