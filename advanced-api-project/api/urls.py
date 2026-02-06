@@ -22,4 +22,3 @@ urlpatterns = [
     path('books/delete/<int:pk>/', BookDeleteView.as_view(), name='book-delete'),
 ]
 
-"from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated"
