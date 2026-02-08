@@ -1,35 +1,33 @@
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, filters
 from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
-from .models import Book
 from django_filters import rest_framework
+
+from .models import Book
 from .serializers import BookSerializer
-from rest_framework.filters import SearchFilter, OrderingFilter
-from django_filters.rest_framework import DjangoFilterBackend
 
 
-# List all books (read-only for unauthenticated users)
+# List all books with filtering, searching, and ordering
 class BookListView(generics.ListAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
 
     # Enable filtering, searching, and ordering
     filter_backends = [
-        DjangoFilterBackend,
-        SearchFilter,
-        OrderingFilter
+        rest_framework.DjangoFilterBackend,
+        filters.SearchFilter,
+        filters.OrderingFilter
     ]
 
-    # Filtering
+    # Filtering fields
     filterset_fields = ['title', 'author', 'publication_year']
 
-    # Searching
+    # Search fields
     search_fields = ['title', 'author']
 
-    # Ordering
+    # Ordering fields
     ordering_fields = ['title', 'publication_year']
     ordering = ['title']
-
 
 
 # Retrieve a single book (read-only for unauthenticated users)
@@ -58,11 +56,3 @@ class BookDeleteView(generics.DestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     permission_classes = [IsAuthenticated]
-    
-
-
-
-
-  # Only logged-in users
-
-# Create your views here.
