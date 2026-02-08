@@ -1,5 +1,5 @@
 from django.urls import path
-from django_filters import rest_framework
+
 from .views import (
     BookListView,
     BookDetailView,
