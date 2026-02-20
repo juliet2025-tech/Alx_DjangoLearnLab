@@ -7,3 +7,11 @@
 {% if user == comment.author %}
 <a href="{% url 'comment-update' comment.id %}">Edit</a>
 {% endif %}
+
+<p>Tags:
+{% for tag in object.tags.all %}
+    <a href="{% url 'posts-by-tag' tag.slug %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+{% empty %}
+    No tags
+{% endfor %}
+</p>

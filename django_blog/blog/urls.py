@@ -53,3 +53,9 @@ urlpatterns = [
     path('comment/<int:pk>/update/', CommentUpdateView.as_view(), name='comment-update'),
     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment-delete'),
 ]
+from . import views
+
+urlpatterns += [
+    path('search/', views.search_results, name='search-results'),
+    path('tags/<slug:slug>/', views.posts_by_tag, name='posts-by-tag'),
+]
