@@ -4,3 +4,6 @@
     <a href="{% url 'post-update' object.id %}">Edit</a>
     <a href="{% url 'post-delete' object.id %}">Delete</a>
 {% endif %}
+{% if user == comment.author %}
+<a href="{% url 'comment-update' comment.id %}">Edit</a>
+{% endif %}
