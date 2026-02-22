@@ -39,7 +39,8 @@ from .serializers import PostSerializer
 @permission_classes([IsAuthenticated])
 def feed(request):
 
-    followed_users = request.user.following.all()
+    Post.objects.filter(author__in=followed_users).order_by('-created_at')
+
 
     posts = Post.objects.filter(
         author__in=followed_users
