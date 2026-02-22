@@ -15,3 +15,9 @@ class User(AbstractUser):
         return self.username
 
 # Create your models here.
+following = models.ManyToManyField(
+    'self',
+    symmetrical=False,
+    related_name='followers',
+    blank=True
+)
