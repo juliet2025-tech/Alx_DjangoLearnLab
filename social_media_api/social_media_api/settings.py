@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 'rest_framework',
 'rest_framework.authtoken',
 'accounts',
+'posts',
+'django_filters',
 
 ]
 
@@ -102,6 +104,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5,
+}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
@@ -120,3 +128,9 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 AUTH_USER_MODEL = 'accounts.User'
+
+from django.urls import path, include
+
+urlpatterns = [
+    path('api/', include('posts.urls')),
+]
